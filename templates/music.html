@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ music.title }}</title>
+</head>
+<body>
+    <h1>{{ music.title }}</h1>
+    <audio controls>
+        <source src="{{ url_for('static', filename='music/' ~ music.file_path) }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+        <li>{{ comment.content }} - {{ comment.user.username }}</li>
+        {% endfor %}
+    </ul>
+    <form method="POST">
+        <textarea name="content" placeholder="Add a comment..." required></textarea><br>
+        <button type="submit">Comment</button>
+    </form>
+</body>
+</html>
